@@ -1,0 +1,18 @@
+---
+- hosts: webhosts
+  become: True
+  tasks:
+  - name: Install java-webserver
+    apt:
+      name: tomcat8
+      state: present
+  - name: Start tomcat8
+    service:
+      name: tomcat8
+      state: started
+      enabled: True
+  - name: Deploy the WAR file
+    copy: 
+      src: target/ROOT.war
+      dest: /var/lib/tomcat8/webapps/
+
