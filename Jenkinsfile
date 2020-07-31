@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/mahendra-shinde/ci-servlet-demo.git'
+                git 'https://github.com/mahendra-shinde/jenkins-ansible-javaapp.git'
 
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn -f app/pom.xml -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
                 success {
-                    archiveArtifacts 'target/*.war'
+                    archiveArtifacts 'app/target/*.war'
                 }
             }
         }
