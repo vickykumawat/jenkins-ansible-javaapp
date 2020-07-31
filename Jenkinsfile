@@ -21,7 +21,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                ansiblePlaybook become: true, credentialsId: 'webhostid', installation: 'ansible', inventory: 'deployment/environment.ini', playbook: 'deployment/tomcat.yml'
+                ansiblePlaybook credentialsId: 'webhostid', installation: 'ansible', inventory: 'deployment/environment.ini', playbook: 'deployment/tomcat.yml'
             }
         }
     }
