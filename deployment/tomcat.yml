@@ -13,6 +13,6 @@
       enabled: True
   - name: Deploy the WAR file
     copy: 
-      src: app/target/ROOT.war
+      src: ../app/target/ROOT.war
       dest: /var/lib/tomcat8/webapps/
 
