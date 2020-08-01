@@ -16,22 +16,24 @@ $ sudo apt install ansible -y
 5. Use SSH connection with Jenkins Master, to create a new SSH Keypair and Use "private-key" in Jenkins credentials and public-key tobe copied to "Sample1"
 
 ```
-$ cd /home/$USER
+## Become JENKINS user
+$ sudo -i
+$ su - jenkins
 $ mkdir temp
 $ ssh-keygen 
-Path for Public Key: /home/$USER/temp/id_rsa.pub
+Path for Public Key: $PWD/temp/id_rsa.pub
 Pass Phrase: <ENTER>
 $ cd temp
 $ ls
 ## Lets copy PUBLIC Key to Sample1
 ## Private IP of Sample1 : 10.0.1.5
-$ ssh-copy-id -i /home/$USER/temp/id_rsa.pub mahendra@10.0.1.5
+$ ssh-copy-id -i $PWD/temp/id_rsa.pub mahendra@10.0.1.5
 Accept the server thumbprint: YES
 ## Change File permissions of SSH Keys
 $ chmod 600 id_rsa
 $ chmod 600 id_rsa.pub
 ## Test the connectivity with 10.0.1.5
-$ ssh -i /home/$USER/temp/id_rsa mahendra@10.0.1.5
+$ ssh -i $PWD/temp/id_rsa mahendra@10.0.1.5
 ## You should be now connected
 $ exit
 ## Display contents of PRIVATE KEY on Screen
