@@ -54,3 +54,45 @@ $ cat id_rsa
     Save the credentials
 
 
+7.  Login in GitHub and FORK this repository 'https://github.com/mahendra-shinde/jenkins-ansible-javaapp'
+
+8.  From inside the remote server, get private ip address (Use AWS Console or Azure Portal)
+
+    ```
+    $ hostname -i
+    ```
+
+9.  Get inside the FORKED repository (create in step#7) and edit file 'deployment/evniornment.ini'
+
+    Replace these line:
+    
+    ```yml
+    [webhosts]
+    10.0.1.5 ansible_user=mahendra
+    ```
+
+    With these [Please replace 172.17.9.2 with Private IP of Your VM, and 'azureuser' with Username of VM ]:
+    ```yml
+    [webhosts]
+    172.17.9.2 ansible_user=azureuser
+    ```
+
+10. After making changes, just use "Commit " button.
+
+11. Modify the Jenkinsfile inside your repository and Update line #11. You need to replace repository URL. Then use "Commit" button.
+
+12. Login in Jenkins Dashboard, and create a new "Pipeline Project"
+
+    ```yml
+    Description: Ansible integration demo
+    Pipeline:   
+            Pipeline from SCM
+            SCM: Git
+            Repository URL: YOUR-REPO-URL
+    ```
+
+13. Save the Job, and use "Build Now"
+
+14. Verify the build console and once build is SUCCESS, use PUBLIC-IP of Target VM.
+
+    `http://PUBLIC-IP:8080/`
