@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/vickykumawat/jenkins-ansible-javaapp'
+                git 'https://github.com/vickykumawat/jenkins-ansible-javaapp.git'
 
                 sh "mvn -f app/pom.xml -Dmaven.test.failure.ignore=true clean package"
             }
